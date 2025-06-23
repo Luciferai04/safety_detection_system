@@ -1,0 +1,13 @@
+# Multiple workers with varying compliance
+# Scenario: mixed_compliance
+# Format: class_id x_center y_center width height
+# Classes: 0=helmet, 1=reflective_jacket, 2=person
+
+2 0.25 0.6 0.22 0.65
+0 0.25 0.32 0.15 0.18
+1 0.25 0.48 0.2 0.35
+2 0.55 0.7 0.25 0.6
+1 0.55 0.58 0.22 0.32
+2 0.8 0.45 0.15 0.35
+0 0.8 0.32 0.08 0.1
+1 0.8 0.42 0.12 0.2

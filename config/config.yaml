@@ -1,0 +1,178 @@
+# Safety Detection System Configuration
+
+# Model Configuration
+model:
+  name: "yolov8n"  # YOLOv8 nano for speed (can be changed to yolov8s, yolov8m, yolov8l, yolov8x)
+  confidence_threshold: 0.5
+  iou_threshold: 0.45
+  device: "auto"  # auto, cpu, cuda, mps
+  custom_model_path: null  # Path to custom trained model
+
+# Safety Equipment Classes
+classes:
+  helmet:
+    - "helmet"
+    - "hard hat"
+    - "safety helmet"
+    - "construction helmet"
+    - "protective helmet"
+  
+  reflective_jacket:
+    - "reflective jacket"
+    - "high-vis vest"
+    - "safety vest"
+    - "hi-vis jacket"
+    - "high visibility vest"
+    - "reflective vest"
+  
+  person:
+    - "person"
+    - "worker"
+    - "human"
+    - "man"
+    - "woman"
+
+# Detection Parameters
+detection:
+  max_detections: 100
+  proximity_threshold:
+    helmet_person: 100  # pixels
+    jacket_person: 150  # pixels
+  
+  # Minimum object sizes (in pixels)
+  min_object_size:
+    helmet: 20
+    jacket: 30
+    person: 50
+
+# Video Processing
+video:
+  max_fps: 30
+  frame_skip: 1  # Process every nth frame (1 = process all frames)
+  max_resolution: [1920, 1080]
+  
+# Thermal Power Plant Specific Settings
+power_plant:
+  safety_zones:
+    - name: "Boiler Area"
+      helmet_required: true
+      jacket_required: true
+      additional_ppe: ["safety_boots", "gloves"]
+    
+    - name: "Control Room"
+      helmet_required: false
+      jacket_required: false
+      additional_ppe: []
+    
+    - name: "Switchyard"
+      helmet_required: true
+      jacket_required: true
+      additional_ppe: ["safety_boots", "gloves", "arc_flash_protection"]
+    
+    - name: "Coal Handling"
+      helmet_required: true
+      jacket_required: true
+      additional_ppe: ["dust_mask", "safety_boots"]
+
+# Alert Configuration
+alerts:
+  violation_threshold: 1  # Number of violations to trigger alert
+  alert_cooldown: 30  # Seconds between alerts for same violation
+  notification_methods:
+    - "email"
+    - "sms"
+    - "dashboard"
+  
+  severity_levels:
+    low: 
+      conditions: ["missing_helmet"]
+      action: "log_warning"
+    
+    medium:
+      conditions: ["missing_jacket", "missing_helmet"]
+      action: "send_notification"
+    
+    high:
+      conditions: ["multiple_violations", "critical_area_violation"]
+      action: "immediate_alert"
+
+# Data Logging
+logging:
+  level: "INFO"
+  file_path: "logs/safety_detection.log"
+  max_file_size: "10MB"
+  backup_count: 5
+  
+  # What to log
+  log_detections: true
+  log_violations: true
+  log_statistics: true
+  save_violation_images: true
+  violation_images_path: "data/violations/"
+
+# Training Configuration (for custom model training)
+training:
+  dataset_path: "data/training/"
+  validation_split: 0.2
+  test_split: 0.1
+  
+  # Data augmentation
+  augmentation:
+    horizontal_flip: 0.5
+    rotation: 15
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.1
+  
+  # Training parameters
+  epochs: 100
+  batch_size: 16
+  learning_rate: 0.001
+  weight_decay: 0.0005
+  
+  # Early stopping
+  patience: 10
+  min_delta: 0.001
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 5000
+  debug: false
+  cors_enabled: true
+  max_file_size: "16MB"
+  upload_folder: "uploads/"
+
+# Web Interface
+web_interface:
+  title: "Thermal Power Plant Safety Detection System"
+  theme: "wide"
+  sidebar_state: "expanded"
+  
+  # Features to enable/disable
+  features:
+    live_camera: true
+    video_upload: true
+    image_upload: true
+    statistics_dashboard: true
+    configuration_panel: true
+
+# Performance Optimization
+performance:
+  multiprocessing: true
+  max_workers: 4
+  gpu_memory_limit: "4GB"
+  cache_size: 100  # Number of recent frames to cache
+
+# Integration Settings
+integration:
+  database:
+    enabled: false
+    type: "sqlite"  # sqlite, postgresql, mysql
+    connection_string: "sqlite:///safety_detection.db"
+  
+  external_apis:
+    enabled: false
+    notification_service: null
+    reporting_service: null

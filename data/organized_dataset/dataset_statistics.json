@@ -1,0 +1,62 @@
+{
+  "dataset_summary": {
+    "total_labeled_images": 1226,
+    "total_unlabeled_images": 24,
+    "total_annotations": 3949,
+    "avg_annotations_per_image": 3.22,
+    "number_of_classes": 1
+  },
+  "class_distribution": {
+    "person": 3949
+  },
+  "class_percentages": {
+    "person": 100.0
+  },
+  "split_distribution": {
+    "train": {
+      "images": 858,
+      "percentage": 70.0
+    },
+    "val": {
+      "images": 245,
+      "percentage": 20.0
+    },
+    "test": {
+      "images": 123,
+      "percentage": 10.0
+    }
+  },
+  "split_statistics": {
+    "train": {
+      "image_count": 858,
+      "annotation_count": 2763,
+      "class_distribution": {
+        "person": 2763
+      },
+      "avg_annotations_per_image": 3.2202797202797204
+    },
+    "val": {
+      "image_count": 245,
+      "annotation_count": 768,
+      "class_distribution": {
+        "person": 768
+      },
+      "avg_annotations_per_image": 3.1346938775510202
+    },
+    "test": {
+      "image_count": 123,
+      "annotation_count": 418,
+      "class_distribution": {
+        "person": 418
+      },
+      "avg_annotations_per_image": 3.3983739837398375
+    }
+  },
+  "data_quality": {
+    "labelling_completeness": 98.1,
+    "min_images_per_class_recommended": 50,
+    "current_min_images_per_class": 3949,
+    "dataset_ready_for_training": true
+  },
+  "recommendations": []
+}

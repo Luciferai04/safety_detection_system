@@ -1,0 +1,7 @@
+# Enhanced with helmet and jacket annotations
+# Classes: 0=helmet, 1=reflective_jacket, 2=person
+# NOTE: This is auto-generated and requires manual review!
+
+2 0.974651 0.543122 0.044370 0.145807
+0 0.974651 0.492090 0.010000 0.021871
+1 0.974651 0.528541 0.035496 0.058323

@@ -1,0 +1,48 @@
+{
+  "dataset_summary": {
+    "total_images": 1250,
+    "labeled_images": 5,
+    "unlabeled_images": 1245,
+    "labelling_progress": 0.4
+  },
+  "labelling_strategy": {
+    "phase_1": {
+      "description": "Auto-generate initial person detections",
+      "target_images": 500,
+      "method": "YOLO pre-trained model",
+      "priority": "High"
+    },
+    "phase_2": {
+      "description": "Manual annotation of safety equipment (helmets, jackets)",
+      "target_images": 200,
+      "method": "Manual annotation tools (LabelImg, CVAT)",
+      "priority": "Critical"
+    },
+    "phase_3": {
+      "description": "Review and correct auto-generated labels",
+      "target_images": 300,
+      "method": "Manual review and correction",
+      "priority": "High"
+    },
+    "phase_4": {
+      "description": "Quality assurance and validation",
+      "target_images": 100,
+      "method": "Random sampling and verification",
+      "priority": "Medium"
+    }
+  },
+  "recommended_tools": [
+    "LabelImg - https://github.com/heartexlabs/labelImg",
+    "CVAT - https://github.com/openvinotoolkit/cvat",
+    "Label Studio - https://labelstud.io/",
+    "Roboflow - https://roboflow.com/"
+  ],
+  "minimum_viable_dataset": {
+    "total_required": 100,
+    "per_class_minimum": {
+      "helmet": 50,
+      "reflective_jacket": 30,
+      "person": 80
+    }
+  }
+}

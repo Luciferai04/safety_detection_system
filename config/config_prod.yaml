@@ -1,0 +1,156 @@
+# Production Configuration for Safety Detection System
+
+# Model Configuration
+model:
+  name: "yolov8s"  # Use small model for better accuracy in production
+  confidence_threshold: 0.6  # Higher confidence for production
+  iou_threshold: 0.45
+  device: "auto"
+  custom_model_path: null
+  batch_size: 8  # Smaller batch for stability
+  max_detections: 50
+  input_size: 640
+
+# Security Configuration (Production)
+security:
+  enable_api_key_auth: true
+  api_key_header: "X-API-Key"
+  rate_limit_requests: 50  # More restrictive
+  rate_limit_window: 60
+  allowed_origins:
+    - "https://your-domain.com"
+    - "https://safety-monitor.company.com"
+  max_file_size_mb: 8  # Smaller for production
+  allowed_file_types:
+    - "jpg"
+    - "jpeg" 
+    - "png"
+    - "mp4"
+    - "avi"
+  enable_cors: true
+
+# Logging Configuration (Production)
+logging:
+  level: "INFO"
+  file_path: "/var/log/safety_detection/safety_detection.log"
+  max_file_size: "50MB"
+  backup_count: 10
+  log_detections: true
+  log_violations: true
+  log_performance: true
+  enable_structured_logging: true
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s"
+
+# Performance Configuration (Production)
+performance:
+  enable_gpu_acceleration: true
+  max_workers: 2  # Conservative for production
+  cache_size: 50  # Smaller cache
+  frame_skip: 1
+  enable_model_optimization: true
+  memory_limit_gb: 8.0
+  enable_tensorrt: false  # Disable unless specifically configured
+
+# Monitoring Configuration (Production)
+monitoring:
+  enable_health_checks: true
+  health_check_interval: 60
+  enable_metrics_collection: true
+  metrics_retention_days: 90  # Longer retention for production
+  alert_violation_threshold: 10  # More lenient threshold
+  alert_cooldown_seconds: 600  # 10 minutes cooldown
+
+# API Configuration (Production)
+api:
+  host: "0.0.0.0"
+  port: 5000
+  debug: false
+  cors_enabled: true
+  max_file_size: "8MB"
+  upload_folder: "/tmp/safety_uploads"
+  workers: 4  # Gunicorn workers
+
+# Database Configuration (Production)
+database:
+  enabled: true
+  type: "postgresql"
+  host: "${DB_HOST}"
+  port: 5432
+  database: "${DB_NAME}"
+  username: "${DB_USERNAME}"
+  password: "${DB_PASSWORD}"
+  ssl_mode: "require"
+  pool_size: 10
+  max_overflow: 20
+
+# Cache Configuration (Production)
+cache:
+  enabled: true
+  type: "redis"
+  host: "${REDIS_HOST}"
+  port: 6379
+  password: "${REDIS_PASSWORD}"
+  db: 0
+  max_connections: 10
+
+# External Services (Production)
+external_services:
+  sentry_dsn: "${SENTRY_DSN}"
+  prometheus_enabled: true
+  prometheus_port: 9090
+  
+# Power Plant Specific (Production)
+power_plant:
+  facility_id: "${FACILITY_ID}"
+  safety_zones:
+    - name: "Boiler Area"
+      helmet_required: true
+      jacket_required: true
+      additional_ppe: ["safety_boots", "gloves"]
+      alert_level: "critical"
+    
+    - name: "Control Room"
+      helmet_required: false
+      jacket_required: false
+      additional_ppe: []
+      alert_level: "low"
+    
+    - name: "Switchyard"
+      helmet_required: true
+      jacket_required: true
+      additional_ppe: ["safety_boots", "gloves", "arc_flash_protection"]
+      alert_level: "critical"
+
+# Alerting (Production)
+alerts:
+  violation_threshold: 3
+  alert_cooldown: 300
+  notification_methods:
+    - "email"
+    - "sms"
+    - "webhook"
+  
+  email:
+    smtp_server: "${SMTP_SERVER}"
+    smtp_port: 587
+    username: "${SMTP_USERNAME}"
+    password: "${SMTP_PASSWORD}"
+    from_address: "safety-alerts@company.com"
+    to_addresses:
+      - "safety-manager@company.com"
+      - "operations@company.com"
+  
+  webhook:
+    url: "${WEBHOOK_URL}"
+    timeout: 30
+    retry_attempts: 3
+
+# Backup and Archival
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  retention_days: 365
+  destinations:
+    - type: "s3"
+      bucket: "${BACKUP_S3_BUCKET}"
+      prefix: "safety-detection-backups"

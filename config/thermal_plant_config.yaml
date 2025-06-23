@@ -1,0 +1,272 @@
+'# Enhanced Alert System for Thermal Plants': null
+'# Enhanced Detection Parameters for Industrial Environments': null
+'# Enhanced Safety Detection System Configuration for Thermal Power Plants': null
+'# Enhanced Safety Equipment Classes for Thermal Plants': null
+'# Enhanced Training Configuration': null
+'# Performance Optimization for Industrial Use': null
+'# Thermal Power Plant Specific Area Rules': null
+classes:
+  arc_flash_suit:
+    aliases:
+    - arc flash suit
+    - electrical protection
+    - arc flash gear
+    - electrical suit
+    colors:
+    - blue
+    - gray
+    - navy
+    new_class: true
+    priority: critical
+    thermal_plant_specific: true
+  helmet:
+    aliases:
+    - helmet
+    - hard hat
+    - safety helmet
+    - construction helmet
+    - protective helmet
+    colors:
+    - yellow
+    - white
+    - orange
+    - red
+    - blue
+    thermal_plant_specific: true
+  person:
+    aliases:
+    - person
+    - worker
+    - operator
+    - technician
+    - engineer
+    thermal_plant_specific: true
+  reflective_jacket:
+    aliases:
+    - reflective jacket
+    - high-vis vest
+    - safety vest
+    - hi-vis jacket
+    - high visibility vest
+    colors:
+    - orange
+    - yellow
+    - lime
+    - red
+    thermal_plant_specific: true
+  respirator:
+    aliases:
+    - respirator
+    - dust mask
+    - face mask
+    - breathing protection
+    colors:
+    - white
+    - gray
+    - blue
+    new_class: true
+    thermal_plant_specific: true
+  safety_boots:
+    aliases:
+    - safety boots
+    - steel toe boots
+    - work boots
+    - protective footwear
+    colors:
+    - black
+    - brown
+    - yellow
+    new_class: true
+    thermal_plant_specific: true
+  safety_gloves:
+    aliases:
+    - safety gloves
+    - work gloves
+    - protective gloves
+    - leather gloves
+    colors:
+    - brown
+    - black
+    - yellow
+    - white
+    new_class: true
+    thermal_plant_specific: true
+detection:
+  max_detections: 50
+  min_object_size:
+    arc_flash_suit: 40
+    boots: 20
+    gloves: 10
+    helmet: 15
+    jacket: 25
+    person: 40
+    respirator: 15
+  proximity_threshold:
+    arc_flash_person: 100
+    boots_person: 200
+    gloves_person: 150
+    helmet_person: 80
+    jacket_person: 120
+    respirator_person: 80
+  thermal_plant_adaptations:
+    dust_environment_processing: true
+    heat_shimmer_correction: true
+    low_light_enhancement: true
+    multi_distance_detection: true
+    steam_interference_compensation: true
+model:
+  confidence_threshold: 0.6
+  custom_model_path: models/thermal_plant_safety_best.pt
+  device: auto
+  iou_threshold: 0.45
+  name: yolov8m
+performance:
+  edge_deployment: true
+  failover_cpu: true
+  gpu_acceleration: true
+  load_balancing: true
+  max_latency: 200ms
+  real_time_processing: true
+  target_fps: 25
+thermal_plant_alerts:
+  critical_violations:
+    multiple_ppe_violations:
+      action: stop_work
+      notification:
+      - supervisor
+      - safety_officer
+      severity: HIGH
+    no_arc_flash_in_switchyard:
+      action: immediate_shutdown
+      notification:
+      - safety_officer
+      - control_room
+      - supervisor
+      severity: CRITICAL
+    unauthorized_access:
+      action: security_alert
+      notification:
+      - security
+      - control_room
+      severity: HIGH
+  environmental_monitoring:
+    dust_level_monitoring: true
+    steam_detection: true
+    temperature_compensation: true
+    weather_integration: true
+  shift_specific_rules:
+    day_shift:
+      min_visibility: normal
+    maintenance_shift:
+      enhanced_monitoring: true
+      permit_tracking: true
+    night_shift:
+      additional_lighting: true
+      min_visibility: enhanced
+thermal_plant_areas:
+  ash_handling:
+    environmental_hazards:
+    - dust
+    - chemicals
+    - slurry
+    mandatory_ppe:
+    - respirator
+    required_ppe:
+    - helmet
+    - reflective_jacket
+    - safety_boots
+    - respirator
+    special_procedures:
+    - decontamination
+  boiler_area:
+    emergency_equipment:
+    - emergency_shower
+    - first_aid
+    environmental_hazards:
+    - high_temperature
+    - steam
+    - noise
+    max_exposure_time: 2_hours
+    optional_ppe:
+    - respirator
+    required_ppe:
+    - helmet
+    - reflective_jacket
+    - safety_boots
+    - safety_gloves
+  coal_handling:
+    air_quality_monitoring: true
+    environmental_hazards:
+    - dust
+    - moving_machinery
+    - coal_spillage
+    optional_ppe:
+    - safety_gloves
+    required_ppe:
+    - helmet
+    - reflective_jacket
+    - safety_boots
+    - respirator
+  control_room:
+    access_control: badge_required
+    environmental_hazards: []
+    optional_ppe:
+    - safety_glasses
+    required_ppe: []
+  switchyard:
+    environmental_hazards:
+    - high_voltage
+    - electrical_arc
+    - weather
+    mandatory_ppe:
+    - arc_flash_suit
+    minimum_clearance: 10_feet
+    permit_required: true
+    required_ppe:
+    - helmet
+    - reflective_jacket
+    - safety_boots
+    - arc_flash_suit
+  turbine_hall:
+    environmental_hazards:
+    - rotating_machinery
+    - noise
+    - oil
+    optional_ppe:
+    - safety_gloves
+    permit_required: true
+    required_ppe:
+    - helmet
+    - reflective_jacket
+    - safety_boots
+    restricted_areas:
+    - turbine_deck
+    - generator_area
+training:
+  dataset_path: data/thermal_plant_enhanced/
+  early_stopping:
+    min_delta: 0.001
+    monitor: val_map50
+    patience: 15
+  target_metrics:
+    map50: 0.75
+    map50_95: 0.55
+    precision: 0.8
+    recall: 0.75
+  test_split: 0.1
+  thermal_plant_augmentation:
+    dust_overlay: 0.3
+    equipment_occlusion: 0.4
+    heat_shimmer: 0.2
+    high_contrast: 0.3
+    industrial_noise: 0.2
+    low_light: 0.4
+    steam_simulation: 0.3
+  training_parameters:
+    batch_size: 8
+    cosine_lr: true
+    epochs: 150
+    learning_rate: 0.0005
+    warmup_epochs: 10
+    weight_decay: 0.0005
+  validation_split: 0.15

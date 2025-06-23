@@ -1,0 +1,7 @@
+# Worker in control room without helmet
+# Scenario: violation
+# Format: class_id x_center y_center width height
+# Classes: 0=helmet, 1=reflective_jacket, 2=person
+
+2 0.6 0.55 0.28 0.8
+1 0.6 0.45 0.25 0.4

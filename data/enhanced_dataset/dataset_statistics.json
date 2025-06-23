@@ -1,0 +1,76 @@
+{
+  "dataset_summary": {
+    "total_labeled_images": 50,
+    "total_unlabeled_images": 1200,
+    "total_annotations": 438,
+    "avg_annotations_per_image": 8.76,
+    "number_of_classes": 3
+  },
+  "class_distribution": {
+    "person": 146,
+    "helmet": 146,
+    "reflective_jacket": 146
+  },
+  "class_percentages": {
+    "person": 33.3,
+    "helmet": 33.3,
+    "reflective_jacket": 33.3
+  },
+  "split_distribution": {
+    "train": {
+      "images": 35,
+      "percentage": 70.0
+    },
+    "val": {
+      "images": 10,
+      "percentage": 20.0
+    },
+    "test": {
+      "images": 5,
+      "percentage": 10.0
+    }
+  },
+  "split_statistics": {
+    "train": {
+      "image_count": 35,
+      "annotation_count": 306,
+      "class_distribution": {
+        "person": 102,
+        "helmet": 102,
+        "reflective_jacket": 102
+      },
+      "avg_annotations_per_image": 8.742857142857142
+    },
+    "val": {
+      "image_count": 10,
+      "annotation_count": 90,
+      "class_distribution": {
+        "person": 30,
+        "helmet": 30,
+        "reflective_jacket": 30
+      },
+      "avg_annotations_per_image": 9.0
+    },
+    "test": {
+      "image_count": 5,
+      "annotation_count": 42,
+      "class_distribution": {
+        "person": 14,
+        "helmet": 14,
+        "reflective_jacket": 14
+      },
+      "avg_annotations_per_image": 8.4
+    }
+  },
+  "data_quality": {
+    "labelling_completeness": 4.0,
+    "min_images_per_class_recommended": 50,
+    "current_min_images_per_class": 146,
+    "dataset_ready_for_training": true
+  },
+  "recommendations": [
+    "Increase total labeled images to at least 100 (currently 50)",
+    "Label more images: 1200 unlabeled images available",
+    "Dataset adequate for initial training but could benefit from more samples"
+  ]
+}

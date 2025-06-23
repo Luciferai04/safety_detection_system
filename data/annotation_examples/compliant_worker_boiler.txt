@@ -1,0 +1,8 @@
+# Worker in boiler area with full PPE
+# Scenario: compliant
+# Format: class_id x_center y_center width height
+# Classes: 0=helmet, 1=reflective_jacket, 2=person
+
+2 0.45 0.65 0.35 0.7
+0 0.45 0.28 0.18 0.22
+1 0.45 0.52 0.32 0.45

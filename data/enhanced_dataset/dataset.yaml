@@ -1,0 +1,9 @@
+path: /Users/soumyajitghosh/safety_detection_system/data/enhanced_dataset
+train: images/train
+val: images/val
+test: images/test
+nc: 3
+names:
+  0: helmet
+  1: reflective_jacket
+  2: person

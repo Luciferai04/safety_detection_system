@@ -1,0 +1,7 @@
+# Worker entering control room
+# Required equipment: helmet
+# Format: class_id x_center y_center width height
+# Classes: 0=helmet, 1=reflective_jacket, 2=person
+
+2 0.5 0.6 0.3 0.8
+0 0.5 0.25 0.15 0.2
