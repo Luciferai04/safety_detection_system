@@ -79,6 +79,9 @@ data/test_images/
 data/videos/
 data/datasets/
 
+# External datasets
+datasets/
+
 # Cache
 .cache/
 .pytest_cache/
