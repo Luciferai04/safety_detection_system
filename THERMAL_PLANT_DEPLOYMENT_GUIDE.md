@@ -1,21 +1,21 @@
-# 🏭 Thermal Power Plant Deployment Guide
+# Thermal Power Plant Deployment Guide
 
-## 📋 Pre-Deployment Checklist
+## Pre-Deployment Checklist
 
-### 1. ✅ Model Requirements
+### 1. Model Requirements
 - [ ] Enhanced model trained (thermal_plant_safety_enhanced.pt)
 - [ ] Accuracy targets met (mAP@0.5 ≥ 75%)
 - [ ] All 7 safety equipment classes trained
 - [ ] Environmental adaptations implemented
 
-### 2. ✅ Hardware Requirements
+### 2. Hardware Requirements
 - [ ] GPU with 8GB+ VRAM (recommended)
 - [ ] 16GB+ system RAM
 - [ ] High-resolution cameras (1080p minimum)
 - [ ] Network connectivity for alerts
 - [ ] Backup power supply
 
-### 3. ✅ Camera Placement
+### 3. Camera Placement
 - [ ] Boiler area coverage (360°)
 - [ ] Turbine hall monitoring
 - [ ] Switchyard perimeter
@@ -23,14 +23,14 @@
 - [ ] Control room entrances
 - [ ] Emergency exit points
 
-### 4. ✅ Integration Points
+### 4. Integration Points
 - [ ] SCADA system integration
 - [ ] Permit-to-work system
 - [ ] Emergency response protocols
 - [ ] Shift management system
 - [ ] Maintenance scheduling
 
-## 🚀 Deployment Phases
+## Deployment Phases
 
 ### Phase 1: Pilot Deployment (Week 1-2)
 1. Deploy in control room area (lowest risk)
@@ -50,19 +50,19 @@
 3. Integrate with plant operations
 4. Full operator training
 
-## ⚙️ Configuration for Different Areas
+## Configuration for Different Areas
 
 ### Boiler Area
 ```yaml
 area: "boiler_area"
 required_ppe: ["helmet", "reflective_jacket", "safety_boots", "safety_gloves"]
 environmental_adaptations:
-  steam_compensation: true
-  heat_shimmer_correction: true
+ steam_compensation: true
+ heat_shimmer_correction: true
 alert_level: "medium"
 ```
 
-### Switchyard  
+### Switchyard
 ```yaml
 area: "switchyard"
 required_ppe: ["helmet", "reflective_jacket", "safety_boots", "arc_flash_suit"]
@@ -76,11 +76,11 @@ immediate_action: "stop_work"
 area: "coal_handling"
 required_ppe: ["helmet", "reflective_jacket", "safety_boots", "respirator"]
 environmental_adaptations:
-  dust_compensation: true
+ dust_compensation: true
 air_quality_monitoring: true
 ```
 
-## 📊 Performance Monitoring
+## Performance Monitoring
 
 ### Key Metrics to Track
 - Detection accuracy per area
@@ -95,7 +95,7 @@ air_quality_monitoring: true
 - Alert response time: ≤30 seconds
 - System availability: ≥99.5%
 
-## 🛡️ Safety Considerations
+## Safety Considerations
 
 ### Critical Safety Rules
 1. Never disable safety detection without proper authorization
@@ -110,7 +110,7 @@ air_quality_monitoring: true
 3. Multiple violations → Area evacuation
 4. Equipment malfunction → Failover to backup systems
 
-## 📚 Training Requirements
+## Training Requirements
 
 ### For Operators
 - 8 hours initial training
@@ -130,14 +130,14 @@ air_quality_monitoring: true
 - Network troubleshooting
 - Hardware replacement
 
-## 🔧 Maintenance Schedule
+## Maintenance Schedule
 
 ### Daily
 - [ ] System health check
 - [ ] Camera lens cleaning
 - [ ] Alert log review
 
-### Weekly  
+### Weekly
 - [ ] Accuracy spot checks
 - [ ] False alarm analysis
 - [ ] Performance metrics review
@@ -154,7 +154,7 @@ air_quality_monitoring: true
 - [ ] Comprehensive system audit
 - [ ] Compliance verification
 
-## 📞 Support and Escalation
+## Support and Escalation
 
 ### Level 1: Basic Issues
 - Operator troubleshooting
@@ -172,7 +172,7 @@ air_quality_monitoring: true
 - Major accuracy problems
 - Emergency situations
 
-## 📈 Continuous Improvement
+## Continuous Improvement
 
 ### Data Collection
 - Violation patterns analysis

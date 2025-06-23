@@ -1,8 +1,8 @@
-# 🚀 Production Deployment Guide
+# Production Deployment Guide
 
 This guide covers deploying the Thermal Power Plant Safety Detection System to production environments.
 
-## 📋 Prerequisites
+## Prerequisites
 
 ### System Requirements
 - **OS**: Ubuntu 20.04+ or CentOS 8+
@@ -24,7 +24,7 @@ This guide covers deploying the Thermal Power Plant Safety Detection System to p
 - Port 3000 (Grafana)
 - Port 9090 (Prometheus)
 
-## 🔧 Environment Setup
+## Environment Setup
 
 ### 1. Install Docker and Docker Compose
 
@@ -95,7 +95,7 @@ mkdir ssl
 # ssl/key.pem
 ```
 
-## 🚢 Deployment Process
+## Deployment Process
 
 ### Automated Deployment
 
@@ -115,21 +115,21 @@ python deploy.py --environment production --skip-backup
 ### Manual Deployment
 
 1. **Build Images**
-   ```bash
-   docker build -t safety-detection:latest .
-   ```
+ ```bash
+ docker build -t safety-detection:latest .
+ ```
 
 2. **Deploy Services**
-   ```bash
-   docker-compose -f docker-compose.prod.yml up -d
-   ```
+ ```bash
+ docker-compose -f docker-compose.prod.yml up -d
+ ```
 
 3. **Verify Deployment**
-   ```bash
-   python deploy.py --health-check-only
-   ```
+ ```bash
+ python deploy.py --health-check-only
+ ```
 
-## 🔍 Health Checks
+## Health Checks
 
 ### Automated Health Checks
 
@@ -142,26 +142,26 @@ python deploy.py --health-check-only
 ### Manual Health Checks
 
 1. **API Health**
-   ```bash
-   curl http://localhost:5000/api/health
-   ```
+ ```bash
+ curl http://localhost:5000/api/health
+ ```
 
 2. **Web Interface**
-   ```bash
-   curl http://localhost:7860
-   ```
+ ```bash
+ curl http://localhost:7860
+ ```
 
 3. **Database**
-   ```bash
-   docker-compose -f docker-compose.prod.yml exec postgres pg_isready
-   ```
+ ```bash
+ docker-compose -f docker-compose.prod.yml exec postgres pg_isready
+ ```
 
 4. **Cache**
-   ```bash
-   docker-compose -f docker-compose.prod.yml exec redis redis-cli ping
-   ```
+ ```bash
+ docker-compose -f docker-compose.prod.yml exec redis redis-cli ping
+ ```
 
-## 📊 Monitoring and Observability
+## Monitoring and Observability
 
 ### Prometheus Metrics
 
@@ -194,7 +194,7 @@ Configure alerts for:
 - Service downtime
 - Model prediction errors
 
-## 🔄 Backup and Recovery
+## Backup and Recovery
 
 ### Automated Backups
 
@@ -221,24 +221,24 @@ tar -czf app_backup.tar.gz logs/ models/ data/
 ### Recovery Procedures
 
 1. **Database Recovery**
-   ```bash
-   # Restore database
-   docker-compose -f docker-compose.prod.yml exec -T postgres psql -U safety_user safety_detection < backup.sql
-   ```
+ ```bash
+ # Restore database
+ docker-compose -f docker-compose.prod.yml exec -T postgres psql -U safety_user safety_detection < backup.sql
+ ```
 
 2. **Application Recovery**
-   ```bash
-   # Stop services
-   docker-compose -f docker-compose.prod.yml down
-   
-   # Restore data
-   tar -xzf app_backup.tar.gz
-   
-   # Restart services
-   docker-compose -f docker-compose.prod.yml up -d
-   ```
+ ```bash
+ # Stop services
+ docker-compose -f docker-compose.prod.yml down
 
-## 🔒 Security Considerations
+ # Restore data
+ tar -xzf app_backup.tar.gz
+
+ # Restart services
+ docker-compose -f docker-compose.prod.yml up -d
+ ```
+
+## Security Considerations
 
 ### Network Security
 - Use HTTPS in production
@@ -258,7 +258,7 @@ tar -czf app_backup.tar.gz logs/ models/ data/
 - Regular security updates
 - Access logging enabled
 
-## 📈 Performance Optimization
+## Performance Optimization
 
 ### Resource Limits
 
@@ -266,13 +266,13 @@ Configure resource limits in `docker-compose.prod.yml`:
 
 ```yaml
 deploy:
-  resources:
-    limits:
-      memory: 4G
-      cpus: '2'
-    reservations:
-      memory: 2G
-      cpus: '1'
+ resources:
+ limits:
+ memory: 4G
+ cpus: '2'
+ reservations:
+ memory: 2G
+ cpus: '1'
 ```
 
 ### GPU Acceleration
@@ -281,14 +281,14 @@ For GPU-enabled inference:
 
 ```yaml
 services:
-  safety-detection:
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+ safety-detection:
+ deploy:
+ resources:
+ reservations:
+ devices:
+ - driver: nvidia
+ count: 1
+ capabilities: [gpu]
 ```
 
 ### Caching Strategy
@@ -298,45 +298,45 @@ services:
 - Database query optimization
 - CDN for static assets
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
 1. **Container Won't Start**
-   ```bash
-   # Check logs
-   docker-compose -f docker-compose.prod.yml logs safety-detection
-   
-   # Check resource usage
-   docker stats
-   ```
+ ```bash
+ # Check logs
+ docker-compose -f docker-compose.prod.yml logs safety-detection
+
+ # Check resource usage
+ docker stats
+ ```
 
 2. **Database Connection Issues**
-   ```bash
-   # Check database status
-   docker-compose -f docker-compose.prod.yml exec postgres pg_isready
-   
-   # Verify credentials
-   docker-compose -f docker-compose.prod.yml exec postgres psql -U safety_user -d safety_detection
-   ```
+ ```bash
+ # Check database status
+ docker-compose -f docker-compose.prod.yml exec postgres pg_isready
+
+ # Verify credentials
+ docker-compose -f docker-compose.prod.yml exec postgres psql -U safety_user -d safety_detection
+ ```
 
 3. **Model Loading Errors**
-   ```bash
-   # Check model files
-   ls -la models/
-   
-   # Verify CUDA availability
-   docker-compose -f docker-compose.prod.yml exec safety-detection python -c "import torch; print(torch.cuda.is_available())"
-   ```
+ ```bash
+ # Check model files
+ ls -la models/
+
+ # Verify CUDA availability
+ docker-compose -f docker-compose.prod.yml exec safety-detection python -c "import torch; print(torch.cuda.is_available())"
+ ```
 
 4. **Performance Issues**
-   ```bash
-   # Monitor resource usage
-   docker stats
-   
-   # Check application metrics
-   curl http://localhost:5000/api/statistics
-   ```
+ ```bash
+ # Monitor resource usage
+ docker stats
+
+ # Check application metrics
+ curl http://localhost:5000/api/statistics
+ ```
 
 ### Log Analysis
 
@@ -351,24 +351,24 @@ docker-compose -f docker-compose.prod.yml logs -f --tail=100 safety-detection
 journalctl -u docker -f
 ```
 
-## 🔄 Updates and Maintenance
+## Updates and Maintenance
 
 ### Rolling Updates
 
 1. **Build New Image**
-   ```bash
-   docker build -t safety-detection:v2.0.0 .
-   ```
+ ```bash
+ docker build -t safety-detection:v2.0.0 .
+ ```
 
 2. **Update Compose File**
-   ```yaml
-   image: safety-detection:v2.0.0
-   ```
+ ```yaml
+ image: safety-detection:v2.0.0
+ ```
 
 3. **Deploy Update**
-   ```bash
-   docker-compose -f docker-compose.prod.yml up -d
-   ```
+ ```bash
+ docker-compose -f docker-compose.prod.yml up -d
+ ```
 
 ### Scheduled Maintenance
 
@@ -384,7 +384,7 @@ journalctl -u docker -f
 - Backup verification
 - Performance baseline updates
 
-## 📞 Support and Escalation
+## Support and Escalation
 
 ### Contact Information
 - **Technical Support**: tech-support@company.com
@@ -406,7 +406,7 @@ journalctl -u docker -f
 
 ---
 
-## 📝 Deployment Checklist
+## Deployment Checklist
 
 ### Pre-Deployment
 - [ ] Environment variables configured
